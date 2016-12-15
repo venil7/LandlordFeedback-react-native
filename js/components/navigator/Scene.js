@@ -3,6 +3,7 @@ import {
   PixelRatio, ScrollView, StyleSheet,
   Text, TouchableHighlight
 } from 'react-native';
+import { HELLO } from 'react-native-dotenv'
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -43,7 +44,8 @@ export default class Scene extends Component {
     return (
       <ScrollView style={styles.scrollView}>
         <Text style={styles.row}>
-          Route: {this.props.route.key}
+          {HELLO}: {this.props.route.key}
+
         </Text>
         <TappableRow
           text="Tap me to load the next scene"

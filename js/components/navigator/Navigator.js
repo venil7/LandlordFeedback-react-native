@@ -44,7 +44,7 @@ export default class Navigator extends Component {
         onPushRoute={this.onPushRoute}
         onPopRoute={this.onPopRoute}
         onExit={this.props.onExit}
-        />
+      />
     );
   }
 }
