@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavigationExperimental, StyleSheet } from 'react-native';
-import Scene from './Scene';
+// import Scene from './Scene';
+import Login from '../login/Login';
 
 const { CardStack: NavigationCardStack } = NavigationExperimental;
 const styles = StyleSheet.create({
@@ -39,7 +40,7 @@ export default class Navigator extends Component {
   // we'll keep it simple.
   renderScene(sceneProps) {
     return (
-      <Scene
+      <Login
         route={sceneProps.scene.route}
         onPushRoute={this.onPushRoute}
         onPopRoute={this.onPopRoute}
