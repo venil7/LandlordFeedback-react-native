@@ -1,5 +1,5 @@
 import user from './user';
 
-export {
+export default {
   user
 };

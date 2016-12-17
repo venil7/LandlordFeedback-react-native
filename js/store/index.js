@@ -1,5 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import * as reducers from '../reducers';
+import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
+import reducers from '../reducers';
 
 type GlobalStateType = {
 };
@@ -7,10 +9,9 @@ type GlobalStateType = {
 const globalState: StateType = {
 };
 
-const allReducers = Object.keys(reducers)
-  .map(name => reducers[name]);
+const middlewares = [thunk, createLogger()];
 
 export default () => {
-  const store = createStore(combineReducers(allReducers)/*, {}, applyMiddleware()*/)
+  const store = createStore(combineReducers(reducers), globalState, applyMiddleware(...middlewares));
   return store;
 };

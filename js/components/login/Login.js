@@ -1,53 +1,49 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { ScrollView, View, Text } from 'react-native';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
+import { login, logout, error as loginError } from '../../actions/user';
 import TappableRow from '../common/TappableRow'
 import styles from '../common/styles';
 // import { HELLO } from 'react-native-dotenv'
-console.log(TappableRow);
-export default class Scene extends Component {
 
-  constructor(props, context) {
-    super(props, context)
-    this.state = {
-      user: null,
-      error: null
-    };
-  }
+class Login extends Component {
 
   async componentDidMount() {
+    const { dispatch } = this.props;
     try {
       const configured = await GoogleSignin.configure({});
       if (configured) {
         const user = await GoogleSignin.currentUserAsync();
-        console.log(user);
-        this.setState({ user, error: null });
+        dispatch(login(user));
       }
     } catch (error) {
-      this.setState({ error });
+      dispatch(loginError(error));
     }
   }
 
   async signIn() {
+    const { dispatch } = this.props;
     try {
       const user = await GoogleSignin.signIn()
-      this.setState({ user, error: null });
+      dispatch(login(user));
     } catch (error) {
-      this.setState({ error });
+      dispatch(loginError(error));
     }
   }
 
   async signOut() {
+    const { dispatch } = this.props;
     try {
       await GoogleSignin.signOut()
-      this.setState({ user: null, error: null });
+      dispatch(logout());
     } catch (error) {
-      this.setState({ error });
+      dispatch(loginError(error));
     }
   }
 
   render() {
-    const { user, error } = this.state;
+    const { user, error } = this.props;
     const signInButton = (
       <GoogleSigninButton
         style={{ width: 312, height: 48 }}
@@ -72,3 +68,11 @@ export default class Scene extends Component {
   }
 
 }
+
+
+export default connect(({user: state}) => {
+  return {
+    user: state.user,
+    error: state.error
+  };
+})(Login);
