@@ -2,7 +2,7 @@ import { PixelRatio, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   scrollView: {
-    marginTop: 64
+    marginTop: 0
   },
   row: {
     padding: 15,
