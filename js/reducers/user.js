@@ -2,7 +2,10 @@ import { LOGIN, LOGOUT, ERROR } from '../actions/user'
 
 type UserStateType = {
   user: {
-
+    email: string,
+    id: string,
+    name: string,
+    photo: string
   }
 };
 

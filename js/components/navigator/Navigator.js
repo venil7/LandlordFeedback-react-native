@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { NavigationExperimental, StyleSheet } from 'react-native';
-// import Scene from './Scene';
+import { connect } from 'react-redux';
 import Login from '../login/Login';
+import Scene from './Scene';
+import { NavigationExperimental, StyleSheet } from 'react-native';
 
 const { CardStack: NavigationCardStack } = NavigationExperimental;
 const styles = StyleSheet.create({
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class Navigator extends Component {
+class Navigator extends Component {
 
   // This sets up the methods (e.g. Pop, Push) for navigation.
   constructor(props, context) {
@@ -29,7 +30,7 @@ export default class Navigator extends Component {
         navigationState={this.props.navigationState}
         renderScene={this.renderScene}
         style={styles.navigator}
-        />
+      />
     );
   }
 
@@ -39,8 +40,16 @@ export default class Navigator extends Component {
   // Here you could choose to render a different component for each route, but
   // we'll keep it simple.
   renderScene(sceneProps) {
+    const { user = null } = this.props;
+
+    if (!user) {
+      return (<Login />);
+    }
+
+    // console.log('route -->', sceneProps.scene.route);
+    // console.log('user ==>', this.props.user);
     return (
-      <Login
+      <Scene
         route={sceneProps.scene.route}
         onPushRoute={this.onPushRoute}
         onPopRoute={this.onPopRoute}
@@ -49,3 +58,7 @@ export default class Navigator extends Component {
     );
   }
 }
+
+export default connect(({ user: state }) => ({
+  user: state.user
+}))(Navigator);
