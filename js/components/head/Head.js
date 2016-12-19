@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { Text, View, Image, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import { StyleSheet, PixelRatio } from 'react-native';
-// import styles from '../common/styles';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Toast from '@remobile/react-native-toast';
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     backgroundColor: '#252526'
+  },
+  menuButton: {
+    marginTop: 10,
   },
   appName: {
     color: 'khaki',
@@ -32,14 +36,21 @@ const styles = StyleSheet.create({
 
 
 export class User extends Component {
+  handleMenu() {
+    Toast.show("this will open menu");
+  }
+
   render() {
     const { user: { name, photo }} = this.props;
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={() => { }}>
-         <Text>
-          some text
-         </Text>
+        <TouchableHighlight
+          style={styles.menuButton}
+          onPress={() => this.handleMenu()}>
+          <Icon
+            name="list"
+            size={30}
+            color="darkkhaki" />
         </TouchableHighlight>
         <Text style={styles.appName}>
           Landlord Feedback

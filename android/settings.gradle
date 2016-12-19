@@ -1,6 +1,5 @@
 rootProject.name = 'LandlordFeedback'
 
-include ':app'
-
-include ':react-native-google-signin', ':app'
+include ':react-native-google-signin', ':react-native-toast', ':app'
 project(':react-native-google-signin').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-google-signin/android')
+project(':react-native-toast').projectDir = new File(settingsDir, '../node_modules/@remobile/react-native-toast/android')

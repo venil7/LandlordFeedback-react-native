@@ -13,7 +13,9 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
-import co.apptailor.googlesignin.RNGoogleSigninPackage;  // <--- import
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
+import com.remobile.toast.RCTToastPackage;
+
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -27,7 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-          new RNGoogleSigninPackage() // <-- add this
+          new RNGoogleSigninPackage(),
+          new RCTToastPackage()
       );
     }
   };
