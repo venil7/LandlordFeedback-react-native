@@ -4,10 +4,22 @@ import TappableRow from '../common/TappableRow';
 import Head from '../head/Head';
 import styles from '../common/styles';
 import { MenuContext } from 'react-native-popup-menu';
-
+import { connect } from 'react-redux';
+import * as routing from '../../actions/routing.js'
 // import { HELLO } from 'react-native-dotenv'
 
-export default class Scene extends Component {
+class Scene extends Component {
+
+  navigateForward() {
+    const { dispatch } = this.props;
+    dispatch(routing.push({ key: '123' + Math.random() }));
+  }
+
+  navigateBack() {
+    const { dispatch } = this.props;
+    dispatch(routing.pop());
+  }
+
   render() {
     return (
       <ScrollView style={styles.scrollView}>
@@ -18,14 +30,16 @@ export default class Scene extends Component {
           </Text>
           <TappableRow
             text="Tap me to load the next scene"
-            onPress={this.props.onPushRoute}
+            onPress={() => this.navigateForward()}
             />
           <TappableRow
             text="Tap me to go back"
-            onPress={this.props.onPopRoute}
+            onPress={() =>this.navigateBack()}
             />
         </MenuContext>
       </ScrollView>
     );
   }
-}
+};
+
+export default connect()(Scene);

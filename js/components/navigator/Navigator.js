@@ -13,22 +13,18 @@ const styles = StyleSheet.create({
 
 class Navigator extends Component {
 
-  // This sets up the methods (e.g. Pop, Push) for navigation.
-  constructor(props, context) {
-    super(props, context);
-
-    this.onPushRoute = this.props.onNavigationChange.bind(null, 'push');
-    this.onPopRoute = this.props.onNavigationChange.bind(null, 'pop');
-    this.renderScene = this.renderScene.bind(this);
+  onPopRoute() {
+    alert('back');
   }
 
   // Now we finally get to use the `NavigationCardStack` to render the scenes.
   render() {
+    const { navigationState } = this.props;
     return (
       <NavigationCardStack
-        onNavigateBack={this.onPopRoute}
-        navigationState={this.props.navigationState}
-        renderScene={this.renderScene}
+        onNavigateBack={() => this.onPopRoute()}
+        navigationState={navigationState}
+        renderScene={(sceneProps) => this.renderScene(sceneProps)}
         style={styles.navigator}
       />
     );
@@ -46,14 +42,9 @@ class Navigator extends Component {
       return (<Login />);
     }
 
-    // console.log('route -->', sceneProps.scene.route);
-    // console.log('user ==>', this.props.user);
     return (
       <Scene
         route={sceneProps.scene.route}
-        onPushRoute={this.onPushRoute}
-        onPopRoute={this.onPopRoute}
-        onExit={this.props.onExit}
       />
     );
   }
