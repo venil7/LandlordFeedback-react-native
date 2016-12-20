@@ -47,25 +47,25 @@ export default class AppMenu extends Component {
             style={styles.menuButton} />
         </MenuTrigger>
         <MenuOptions>
-          <MenuOption value={1} style={styles.menuOption}>
+          <MenuOption value={'home'} style={styles.menuOption}>
             <Icon name="home" {...menuIconProps} />
             <Text style={styles.menuText}>
               Home
             </Text>
           </MenuOption>
-          <MenuOption value={2} style={styles.menuOption}>
+          <MenuOption value={'searxh'} style={styles.menuOption}>
             <Icon name="search" {...menuIconProps} />
             <Text style={styles.menuText}>
               Search..
             </Text>
           </MenuOption>
-          <MenuOption value={3} style={styles.menuOption}>
+          <MenuOption value={'feedback'} style={styles.menuOption}>
             <Icon name="star" {...menuIconProps} />
             <Text style={styles.menuText}>
               Leave feedback
             </Text>
           </MenuOption>
-          <MenuOption value={4} style={styles.menuOption}>
+          <MenuOption value={'signout'} style={styles.menuOption}>
             <Icon name="user" {...menuIconProps} />
             <Text style={styles.menuText}>
               Sign out..

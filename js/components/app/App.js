@@ -31,6 +31,4 @@ class App extends Component {
   }
 }
 
-export default connect(({routing}) => {
-  return { routing };
-})(App);
+export default connect(({routing}) => ({ routing }))(App);

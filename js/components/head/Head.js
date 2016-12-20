@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, PixelRatio } from 'react-native';
 import Toast from '@remobile/react-native-toast';
 import AppMenu from './AppMenu';
+import * as routing from '../../actions/routing';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,12 +36,18 @@ const styles = StyleSheet.create({
 
 export class User extends Component {
 
+  handleMenuItem(key) {
+    const { dispatch } = this.props;
+    const route = { key };
+    dispatch(routing.push(route));
+  }
+
   render() {
     const { user: { name, photo }} = this.props;
     return (
       <View style={styles.container}>
         <AppMenu
-          handleMenu={(val) => alert(val)}
+          handleMenu={(val) => this.handleMenuItem(val)}
         />
         <Text style={styles.appName}>
           Landlord Feedback

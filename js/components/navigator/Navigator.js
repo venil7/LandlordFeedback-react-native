@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Login from '../login/Login';
 import Scene from './Scene';
-import { NavigationExperimental, StyleSheet } from 'react-native';
+import {
+  NavigationExperimental,
+  StyleSheet, BackAndroid
+} from 'react-native';
 
 const { CardStack: NavigationCardStack } = NavigationExperimental;
 const styles = StyleSheet.create({
@@ -13,8 +16,25 @@ const styles = StyleSheet.create({
 
 class Navigator extends Component {
 
+  componentDidMount () {
+    BackAndroid.addEventListener('hardwareBackPress', () => this.handleBackAction())
+  }
+  componentWillUnmount () {
+    BackAndroid.removeEventListener('hardwareBackPress', () => this.handleBackAction())
+  }
+
+  handleBackAction() {
+    const {navigationState} = this.props;
+    if (navigationState.index === 0) {
+      return false;
+    }
+
+    this.onPopRoute()
+    return true;
+  }
+
   onPopRoute() {
-    alert('back');
+    this.props.onPop();
   }
 
   // Now we finally get to use the `NavigationCardStack` to render the scenes.
