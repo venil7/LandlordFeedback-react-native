@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Login from '../login/Login';
 import Scene from './Scene';
+import PropertiesScene from '../../components/properties/PropertiesScene';
 import {
   NavigationExperimental,
   StyleSheet, BackAndroid
@@ -16,10 +17,10 @@ const styles = StyleSheet.create({
 
 class Navigator extends Component {
 
-  componentDidMount () {
+  componentDidMount() {
     BackAndroid.addEventListener('hardwareBackPress', () => this.handleBackAction())
   }
-  componentWillUnmount () {
+  componentWillUnmount() {
     BackAndroid.removeEventListener('hardwareBackPress', () => this.handleBackAction())
   }
 
@@ -46,7 +47,7 @@ class Navigator extends Component {
         navigationState={navigationState}
         renderScene={(sceneProps) => this.renderScene(sceneProps)}
         style={styles.navigator}
-      />
+        />
     );
   }
 
@@ -62,11 +63,14 @@ class Navigator extends Component {
       return (<Login />);
     }
 
-    return (
-      <Scene
-        route={sceneProps.scene.route}
-      />
-    );
+    switch (sceneProps.scene.route.key) {
+      case 'latest': {
+        return (<PropertiesScene />);
+      }
+      default: {
+        return (<Scene route={sceneProps.scene.route} />);
+      }
+    }
   }
 }
 

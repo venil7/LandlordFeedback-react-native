@@ -53,7 +53,13 @@ export default class AppMenu extends Component {
               Home
             </Text>
           </MenuOption>
-          <MenuOption value={'searxh'} style={styles.menuOption}>
+          <MenuOption value={'latest'} style={styles.menuOption}>
+            <Icon name="refresh" {...menuIconProps} />
+            <Text style={styles.menuText}>
+              Recent feedback
+            </Text>
+          </MenuOption>
+          <MenuOption value={'search'} style={styles.menuOption}>
             <Icon name="search" {...menuIconProps} />
             <Text style={styles.menuText}>
               Search..

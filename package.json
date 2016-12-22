@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@remobile/react-native-toast": "^1.0.5",
+    "firebase": "^3.6.4",
     "react": "15.4.1",
     "react-native": "0.39.1",
     "react-native-google-signin": "^0.8.1",

@@ -3,6 +3,8 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import reducers from '../reducers';
 
+import firebase from '../firebase';
+
 type GlobalStateType = {
 };
 

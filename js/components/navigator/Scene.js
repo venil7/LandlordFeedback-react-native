@@ -5,7 +5,8 @@ import Head from '../head/Head';
 import styles from '../common/styles';
 import { MenuContext } from 'react-native-popup-menu';
 import { connect } from 'react-redux';
-import * as routing from '../../actions/routing.js'
+import * as routing from '../../actions/routing';
+import * as properties from '../../actions/properties';
 // import { HELLO } from 'react-native-dotenv'
 
 class Scene extends Component {
@@ -20,6 +21,11 @@ class Scene extends Component {
     dispatch(routing.pop());
   }
 
+  loadProperties() {
+    const { dispatch } = this.props;
+    dispatch(properties.fetchLatest());
+  }
+
   render() {
     return (
       <ScrollView style={styles.scrollView}>
@@ -31,6 +37,10 @@ class Scene extends Component {
           <TappableRow
             text="Tap me to load the next scene"
             onPress={() => this.navigateForward()}
+            />
+          <TappableRow
+            text="Load some properties"
+            onPress={() => this.loadProperties()}
             />
           <TappableRow
             text="Tap me to go back"
